@@ -12,8 +12,8 @@ function mergeImg(images, opts = {}) {
   const {
     direction = false,
     color = 0x00000000,
-    offset = 0,
     align = 'center',
+    offset = 0,
   } = opts;
 
   return Promise.all(images.map((img) => read(img)))
