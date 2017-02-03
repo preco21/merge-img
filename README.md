@@ -17,8 +17,20 @@ import mergeImg from 'merge-img';
 
 mergeImg(['image-1.png', 'image-2.jpg'])
   .then((img) => {
-    img.write('out.png');
+    console.log(img); // => `[object Jimp]`
+
+    // Save image as file
+    img.write('out.png', () => console.log('done'));
+
+    // Get image as `Buffer`
+    img.getBuffer(img.getMIME(), (buf) => console.log(buf));
   });
+
+  // You can pass image buffers as well
+  mergeImg([imgBuffer1, imgBuffer2])
+    .then((img) => {
+      // Do something
+    });
 ```
 
 ## API
@@ -32,7 +44,7 @@ mergeImg(['image-1.png', 'image-2.jpg'])
   * `align` String - Aligns the images. If the images are not all the same size, they are sorted by the largest image. Possible values are `start`, `center` and `end`.
   * `offset` Number - Offsets between each image.
 
-Returns a `Promise` for merged image.
+Returns a `Promise` for [`Jimp`](https://github.com/oliver-moran/jimp#writing-to-files-and-buffers) object, so you can do additional tasks with it.
 
 ## License
 
