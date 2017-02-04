@@ -6,11 +6,8 @@
   "main": "lib/index.js",
   "scripts": {
     "prebuild": "npm run clean",
-    "start": "node .",
-    "test": "npm run lint && jest",
-    "lint": "eslint .",
+    "test": "eslint . && jest",
     "build": "babel --out-dir lib src",
-    "dev": "nodemon --exec babel-node src/index.js",
     "clean": "rimraf lib"
   },
   "engines": {
