@@ -29,11 +29,11 @@ mergeImg(['image-1.png', 'image-2.jpg'])
     img.getBuffer(img.getMIME(), (buf) => console.log(buf));
   });
 
-  // You can pass image buffers as well
-  mergeImg([imgBuffer1, imgBuffer2])
-    .then((img) => {
-      // Do something
-    });
+// You can pass image buffers as well
+mergeImg([imgBuffer1, imgBuffer2])
+  .then((img) => {
+    // Do something
+  });
 ```
 
 ## API
