@@ -5,6 +5,7 @@
   "author": "Plusb Preco <plusb21@gmail.com>",
   "main": "lib/index.js",
   "scripts": {
+    "prepublish": "npm rub build",
     "prebuild": "npm run clean",
     "test": "eslint . && jest",
     "build": "babel --out-dir lib src",
@@ -19,6 +20,15 @@
   "bugs": {
     "url": "https://github.com/preco21/merge-img/issues"
   },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "convert",
+    "image",
+    "manipulation",
+    "mergeunload"
+  ],
   "dependencies": {
     "jimp": "^0.2.27"
   },
