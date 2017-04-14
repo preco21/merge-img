@@ -18,25 +18,23 @@ function mergeImg(images, opts = {}) {
 
   return Promise.all(images.map((img) => read(img)))
     .then((imgs) => {
-      const {data: imgData} = imgs.reduce((res, elem) => {
-        const {data, prevX, prevY} = res;
+      let totalX = 0;
+      let totalY = 0;
+
+      const imgData = imgs.reduce((res, elem) => {
         const {bitmap: {width, height}} = elem;
 
-        data.push({
+        res.push({
           img: elem,
-          prevX,
-          prevY,
+          prevX: totalX,
+          prevY: totalY,
         });
 
-        res.prevX = prevX + width; // eslint-disable-line no-param-reassign
-        res.prevY = prevY + height; // eslint-disable-line no-param-reassign
+        totalX += width;
+        totalY += height;
 
         return res;
-      }, {
-        data: [],
-        prevX: 0,
-        prevY: 0,
-      });
+      }, []);
 
       const totalWidth = direction
         ? Math.max(...imgs.map(({bitmap: {width}}) => width))
