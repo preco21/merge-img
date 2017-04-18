@@ -47,7 +47,7 @@ mergeImg([imgBuffer1, imgBuffer2])
   * `align` String - Aligns the images. If the images are not all the same size, they are sorted by the largest image. Possible values are `start`, `center` and `end`.
   * `offset` Number - Offset in pixels between each image.
 
-Returns a `Promise` for [`Jimp`](https://github.com/oliver-moran/jimp#writing-to-files-and-buffers) object, so you can do additional tasks with it.
+Returns a `Promise` that contains [`Jimp`](https://github.com/oliver-moran/jimp#writing-to-files-and-buffers) object, so you can do additional tasks with it.
 
 ## License
 
