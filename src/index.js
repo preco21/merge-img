@@ -1,6 +1,11 @@
 import Jimp, {read} from 'jimp';
 
-function mergeImg(images, opts = {}) {
+function mergeImg(images, {
+    direction = false,
+    color = 0x00000000,
+    align = 'center',
+    offset = 0,
+} = {}) {
   if (!Array.isArray(images)) {
     throw new TypeError('`images` must be an array contains images');
   }
@@ -8,13 +13,6 @@ function mergeImg(images, opts = {}) {
   if (images.length < 1) {
     throw new Error('At least `images` must contain more than one image');
   }
-
-  const {
-    direction = false,
-    color = 0x00000000,
-    align = 'center',
-    offset = 0,
-  } = opts;
 
   return Promise.all(images.map((img) => read(img)))
     .then((imgs) => {
