@@ -1,10 +1,10 @@
 import Jimp, {read} from 'jimp';
 
 function mergeImg(images, {
-    direction = false,
-    color = 0x00000000,
-    align = 'center',
-    offset = 0,
+  direction = false,
+  color = 0x00000000,
+  align = 'center',
+  offset = 0,
 } = {}) {
   if (!Array.isArray(images)) {
     throw new TypeError('`images` must be an array contains images');
