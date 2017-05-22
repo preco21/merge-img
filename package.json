@@ -27,7 +27,8 @@
     "convert",
     "image",
     "manipulation",
-    "merge"
+    "merge",
+    "concat"
   ],
   "dependencies": {
     "jimp": "^0.2.27"
