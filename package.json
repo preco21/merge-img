@@ -31,7 +31,7 @@
     "concat"
   ],
   "dependencies": {
-    "jimp": "^0.2.27"
+    "jimp": "^0.2.28"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
