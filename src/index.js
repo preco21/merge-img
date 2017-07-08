@@ -1,6 +1,6 @@
 import Jimp, {read} from 'jimp';
 
-function mergeImg(images, {
+export default function mergeImg(images, {
   direction = false,
   color = 0x00000000,
   align = 'center',
@@ -68,7 +68,3 @@ function mergeImg(images, {
       return baseImage;
     });
 }
-
-export {
-  mergeImg as default,
-};
