@@ -38,12 +38,12 @@
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-env": "^1.5.1",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-stage-1": "^6.24.1",
-    "eslint": "^3.19.0",
-    "eslint-config-prev": "^4.1.0",
+    "eslint": "^4.1.1",
+    "eslint-config-prev": "next",
     "eslint-plugin-babel": "^4.1.1",
-    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-import": "^2.7.0",
     "jest": "^20.0.4",
     "rimraf": "^2.6.1"
   }
