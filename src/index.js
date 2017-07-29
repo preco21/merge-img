@@ -13,6 +13,18 @@ export default function mergeImg(images, {
   if (images.length < 1) {
     throw new Error('At least `images` must contain more than one image');
   }
+  
+  const alignImage = (total, size) => {
+    if (align === 'center') {
+      return (total - size) / 2;
+    }
+
+    if (align === 'end') {
+      return total - size;
+    }
+
+    return 0;
+  };
 
   return Promise.all(images.map((img) => read(img)))
     .then((imgs) => {
@@ -43,18 +55,6 @@ export default function mergeImg(images, {
         : Math.max(...imgs.map(({bitmap: {height}}) => height));
 
       const baseImage = new Jimp(totalWidth, totalHeight, color);
-
-      const alignImage = (total, size) => {
-        if (align === 'center') {
-          return (total - size) / 2;
-        }
-
-        if (align === 'end') {
-          return total - size;
-        }
-
-        return 0;
-      };
 
       for (const [index, {img, prevX, prevY}] of imgData.map((elem, idx) => [idx, elem])) {
         const {bitmap: {width, height}} = img;
