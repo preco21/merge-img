@@ -25,10 +25,11 @@
   ],
   "keywords": [
     "convert",
+    "compose",
+    "concat",
     "image",
     "manipulation",
-    "merge",
-    "concat"
+    "merge"
   ],
   "dependencies": {
     "jimp": "^0.2.28"
