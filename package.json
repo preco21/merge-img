@@ -24,9 +24,9 @@
     "lib"
   ],
   "keywords": [
+    "concat",
     "convert",
     "compose",
-    "concat",
     "image",
     "manipulation",
     "merge"
