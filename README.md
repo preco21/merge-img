@@ -9,7 +9,7 @@
 
 `merge-img` simply merges passed images into one single image in serial. This may helpful for task which has to generate a preview of multiple images in single image. This moudle is based on [`Jimp`][jimp].
 
-![figure](media/figure.png)
+![figure](https://rawgit.com/preco21/merge-img/master/media/figure.png)
 
 ## Install
 
