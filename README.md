@@ -40,7 +40,7 @@ mergeImg(['image-1.png', 'image-2.jpg'])
 * `options` Object (optional)
   * `direction` Boolean - Direction of merged image. If this value is `true`, the images are merged vertically. Otherwise, the images are merged horizontally.
   * `color` Number (hex) - Default background color represented by hex value.
-  * `align` String - Aligns the images. If the images are not all the same size, images will be sorted to largest image. Possible values are `start`, `center` and `end`.
+  * `align` String - Aligns given images. If the images are not all the same size, images will be sorted to largest image. Possible values are `start`, `center` and `end`. Default is `start`.
   * `offset` Number - Offset in pixels between each image.
 
 Returns a `Promise` that contains [`Jimp`][jimp] object, so you can do more task with it.
