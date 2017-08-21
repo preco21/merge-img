@@ -32,7 +32,7 @@ describe('`mergeImg()`', () => {
   });
 
   test('should handle options', async () => {
-    const {bitmap: {width, height}} = await mergeImg([
+    const image = await mergeImg([
       `${fixturePath}/example.png`,
       `${fixturePath}/example.png`,
     ], {
@@ -42,8 +42,7 @@ describe('`mergeImg()`', () => {
       offset: 10,
     });
 
-    expect(width).toBe(512);
-    expect(height).toBe(1034);
+    expect(image instanceof Jimp).toBeTruthy();
   });
 
   test('should handle offsets per image individually`', async () => {
@@ -55,15 +54,54 @@ describe('`mergeImg()`', () => {
       {
         src: `${fixturePath}/example.png`,
         offsetX: 100,
-      },
-      {
-        src: `${fixturePath}/example.png`,
-        offsetX: 100,
         offsetY: 150,
       },
     ]);
 
-    expect(width).toBe(1736);
+    expect(width).toBe(1124);
     expect(height).toBe(662);
+  });
+});
+
+describe('`mergeImg()` margin option', () => {
+  test('should handle the image margin with number option', async () => {
+    const {bitmap: {width, height}} = await mergeImg([
+      `${fixturePath}/example.png`,
+      `${fixturePath}/example.png`,
+    ], {
+      margin: 40,
+    });
+
+    expect(width).toBe(1104);
+    expect(height).toBe(592);
+  });
+
+  test('should handle the image margin with string option', async () => {
+    const {bitmap: {width, height}} = await mergeImg([
+      `${fixturePath}/example.png`,
+      `${fixturePath}/example.png`,
+    ], {
+      margin: '40 40 0 10',
+    });
+
+    expect(width).toBe(1074);
+    expect(height).toBe(552);
+  });
+
+  test('should handle the image margin with object option', async () => {
+    const {bitmap: {width, height}} = await mergeImg([
+      `${fixturePath}/example.png`,
+      `${fixturePath}/example.png`,
+    ], {
+      margin: {
+        top: 40,
+        right: 40,
+        bottom: 0,
+        left: 10,
+      },
+    });
+
+    expect(width).toBe(1074);
+    expect(height).toBe(552);
   });
 });
