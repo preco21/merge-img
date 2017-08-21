@@ -3,7 +3,7 @@ import Jimp, {read} from 'jimp';
 export default function mergeImg(images, {
   direction = false,
   color = 0x00000000,
-  align = 'center',
+  align = 'start',
   offset = 0,
 } = {}) {
   if (!Array.isArray(images)) {
