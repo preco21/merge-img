@@ -13,7 +13,22 @@ export default function mergeImg(images, {
   if (images.length < 1) {
     throw new Error('At least `images` must contain more than one image');
   }
-  
+
+  const processImg = (img) => {
+    if (typeof img === 'object') {
+      const {src, offsetX, offsetY} = img;
+
+      return read(src)
+        .then((imgObj) => ({
+          img: imgObj,
+          offsetX,
+          offsetY,
+        }));
+    }
+
+    return read(img).then((imgObj) => ({img: imgObj}));
+  };
+
   const alignImage = (total, size) => {
     if (align === 'center') {
       return (total - size) / 2;
@@ -26,41 +41,46 @@ export default function mergeImg(images, {
     return 0;
   };
 
-  return Promise.all(images.map((img) => read(img)))
+  return Promise.all(images.map(processImg))
     .then((imgs) => {
       let totalX = 0;
       let totalY = 0;
 
-      const imgData = imgs.reduce((res, elem) => {
-        const {bitmap: {width, height}} = elem;
+      const imgData = imgs.reduce((res, {img, offsetX = 0, offsetY = 0}) => {
+        const {bitmap: {width, height}} = img;
 
         res.push({
-          img: elem,
-          prevX: totalX,
-          prevY: totalY,
+          img,
+          prevX: totalX + offsetX,
+          prevY: totalY + offsetY,
+          offsetX,
+          offsetY,
         });
 
-        totalX += width;
-        totalY += height;
+        totalX += width + offsetX;
+        totalY += height + offsetY;
 
         return res;
       }, []);
 
       const totalWidth = direction
-        ? Math.max(...imgs.map(({bitmap: {width}}) => width))
-        : imgs.reduce((res, {bitmap: {width}}) => res + width, 0) + ((imgs.length - 1) * offset);
+        ? Math.max(...imgData.map(({img: {bitmap: {width}}, offsetX}) => width + offsetX))
+        : imgData.reduce((res, {img: {bitmap: {width}}, offsetX}, index) => res + width + offsetX + (index * offset), 0);
 
       const totalHeight = direction
-        ? imgs.reduce((res, {bitmap: {height}}) => res + height, 0) + ((imgs.length - 1) * offset)
-        : Math.max(...imgs.map(({bitmap: {height}}) => height));
+        ? imgData.reduce((res, {img: {bitmap: {height}}, offsetY}, index) => res + height + offsetY + (index * offset), 0)
+        : Math.max(...imgData.map(({img: {bitmap: {height}}, offsetY}) => height + offsetY));
 
       const baseImage = new Jimp(totalWidth, totalHeight, color);
 
-      for (const [index, {img, prevX, prevY}] of imgData.map((elem, idx) => [idx, elem])) {
+      // Fallback for `Array#entries()`
+      const imgDataEntries = imgData.map((data, index) => [index, data]);
+
+      for (const [index, {img, prevX, prevY, offsetX, offsetY}] of imgDataEntries) {
         const {bitmap: {width, height}} = img;
         const [px, py] = direction
-          ? [alignImage(totalWidth, width), prevY + (index * offset)]
-          : [prevX + (index * offset), alignImage(totalHeight, height)];
+          ? [alignImage(totalWidth, width) + offsetX, prevY + (index * offset)]
+          : [prevX + (index * offset), alignImage(totalHeight, height) + offsetY];
 
         baseImage.composite(img, px, py);
       }

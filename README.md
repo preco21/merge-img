@@ -36,7 +36,10 @@ mergeImg(['image-1.png', 'image-2.jpg'])
 
 ### mergeImg(images[, options])
 
-* `images` Array of `String` and `Buffer` - List of images to be merged. If `String` has passed, it will be considered to file path.
+* `images` Array of String or Buffer and Object - List of images to concat. If `String` has passed, it will be considered to file path. If `Object` has passed, the object can have following properties:
+  * `src` String or Buffer - A single image source to concat.
+  * `offsetX` (optional) - `x` offset to affect this image. Default is `0`.
+  * `offsetY` (optional) - `y` offset to affect this image. Default is `0`.
 * `options` Object (optional)
   * `direction` Boolean - Direction of merged image. If this value is `true`, the images are merged vertically. Otherwise, the images are merged horizontally.
   * `color` Number (hex) - Default background color represented by RGBA hex value. Default is `0x00000000`.
