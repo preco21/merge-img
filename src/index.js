@@ -1,3 +1,4 @@
+import isPlainObj from 'is-plain-obj';
 import Jimp, {read} from 'jimp';
 import alignImage from './utils/alignImage';
 import calcMargin from './utils/calcMargin';
@@ -18,7 +19,7 @@ export default function mergeImg(images, {
   }
 
   const processImg = (img) => {
-    if (typeof img === 'object') {
+    if (isPlainObj(img)) {
       const {src, offsetX, offsetY} = img;
 
       return read(src)
