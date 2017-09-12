@@ -36,7 +36,7 @@ mergeImg(['image-1.png', 'image-2.jpg'])
 
 ### mergeImg(images[, options])
 
-* `images` Array of (String | Buffer | Object) - List of images to concat. If `String` has passed, it will be considered to file path. An `Object` entry can have following options:
+* `images` Array of (String | Object | Buffer | [Jimp][jimp]) - List of images to concat. If `String` is passed, it will be considered to file path. Also you can pass other [Jimp][jimp] object. An `Object` entry can have following options:
   * `src` _`String`_ or `Buffer` - A single image source to concat.
   * `offsetX` Number (optional) - `x` offset to affect this image. Default is `0`.
   * `offsetY` Number (optional) - `y` offset to affect this image. Default is `0`.
@@ -45,16 +45,17 @@ mergeImg(['image-1.png', 'image-2.jpg'])
   * `color` Number (hex) - Default background color represented by RGBA hex value. Default is `0x00000000`.
   * `align` String - Aligning of given images. If the images are not all the same size, images will be sorted to largest image. Possible values are `start`, `center` and `end`. Default is `start`.
   * `offset` Number - Offset in pixels between each image. Default is `0`.
-  * `margin` (Number | String | Object) - Margin of the result image. If `Number` or `String` has passed, it will be considered as [standard css shorthand properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties) (e.g. '40 40 0 10'). An `Object` entry can have following options:
+  * `margin` (Number | String | Object) - Margin of the result image. If `Number` or `String` is passed, it will be considered as [standard css shorthand properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties) (e.g. '40 40 0 10'). An `Object` entry can have following options:
     * `top` Number (optional) - Margin on top side of result image. Default is `0`.
     * `right` Number (optional) - Margin on right side of result image. Default is `0`.
     * `bottom` Number (optional) - Margin on bottom side of result image. Default is `0`.
     * `left` Number (optional) - Margin on left side of result image. Default is `0`.
 
-Returns a `Promise` that contains [`Jimp`][jimp] object.
+Returns a `Promise` that contains [`Jimp`][working-with-jimp] object.
 
 ## License
 
 [MIT](https://preco.mit-license.org/)
 
-[jimp]: https://github.com/oliver-moran/jimp#writing-to-files-and-buffers
+[jimp]: https://github.com/oliver-moran/jimp
+[working-with-jimp]: https://github.com/oliver-moran/jimp#writing-to-files-and-buffers
