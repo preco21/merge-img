@@ -4,7 +4,6 @@ import mergeImg from '../src';
 
 const fixturePath = resolve(__dirname, 'fixtures');
 
-// mergeimg jimp 객체 버퍼도 받는지 확인
 describe('`mergeImg()`', () => {
   test('should only accept correct types', async () => {
     await expect(mergeImg([`${fixturePath}/example.png`, `${fixturePath}/example.png`]))
