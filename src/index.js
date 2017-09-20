@@ -61,10 +61,10 @@ export default function mergeImg(images, {
 
       const totalWidth = direction
         ? Math.max(...imgData.map(({img: {bitmap: {width}}, offsetX}) => width + offsetX))
-        : imgData.reduce((res, {img: {bitmap: {width}}, offsetX}, index) => res + width + offsetX + (index * offset), 0);
+        : imgData.reduce((res, {img: {bitmap: {width}}, offsetX}, index) => res + width + offsetX + (Number(index > 0) * offset), 0);
 
       const totalHeight = direction
-        ? imgData.reduce((res, {img: {bitmap: {height}}, offsetY}, index) => res + height + offsetY + (index * offset), 0)
+        ? imgData.reduce((res, {img: {bitmap: {height}}, offsetY}, index) => res + height + offsetY + (Number(index > 0) * offset), 0)
         : Math.max(...imgData.map(({img: {bitmap: {height}}, offsetY}) => height + offsetY));
 
       const baseImage = new Jimp(totalWidth + marginRightLeft, totalHeight + marginTopBottom, color);
