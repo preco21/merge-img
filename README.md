@@ -1,9 +1,9 @@
 # merge-img
 
-[![Code Style Prev](https://img.shields.io/badge/code%20style-prev-32c8fc.svg?style=flat-square)](https://github.com/preco21/eslint-config-prev)
-[![NPM Version](https://img.shields.io/npm/v/merge-img.svg?style=flat-square)](https://www.npmjs.com/package/merge-img)
-[![Build Status](https://img.shields.io/travis/preco21/merge-img/master.svg?style=flat-square)](https://travis-ci.org/preco21/merge-img)
-[![Dependency Status](https://dependencyci.com/github/preco21/merge-img/badge?style=flat-square)](https://dependencyci.com/github/preco21/merge-img)
+[![Code Style Prev](https://img.shields.io/badge/code%20style-prev-32c8fc.svg)](https://github.com/preco21/eslint-config-prev)
+[![NPM Version](https://img.shields.io/npm/v/merge-img.svg)](https://www.npmjs.com/package/merge-img)
+[![Build Status](https://travis-ci.org/preco21/merge-img.svg?branch=master)](https://travis-ci.org/preco21/merge-img)
+[![Dependency Status](https://dependencyci.com/github/preco21/merge-img/badge)](https://dependencyci.com/github/preco21/merge-img)
 
 > Merge multiple images into one single image in serial
 
