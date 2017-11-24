@@ -5,13 +5,13 @@ import mergeImg from '../src';
 const fixturePath = resolve(__dirname, 'fixtures');
 
 describe('`mergeImg()`', () => {
-  test('should accept correct path type', async () => {
+  test('accepts correct path type', async () => {
     await expect(mergeImg([`${fixturePath}/example.png`, `${fixturePath}/example.png`]))
       .resolves
       .toBeDefined();
   }, 10000);
 
-  test('should accept correct object type', async () => {
+  test('accepts correct object type', async () => {
     await expect(
       mergeImg([
         {
@@ -29,7 +29,7 @@ describe('`mergeImg()`', () => {
   }, 10000);
 
   // FIXME: Need to address for upstream issue accepting Jimp object as a argument
-  test.skip('should accept correct Jimp type', async () => {
+  test.skip('accepts correct Jimp type', async () => {
     const jimpImg = await read(`${fixturePath}/example.png`);
     const jimpImg2 = await read(`${fixturePath}/example.png`);
 
@@ -38,12 +38,12 @@ describe('`mergeImg()`', () => {
       .toBeDefined();
   }, 10000);
 
-  test('should returns `Promise` that contains `Jimp` object', async () => {
+  test('returns `Promise` that contains `Jimp` object', async () => {
     const image = await mergeImg([`${fixturePath}/example.png`, `${fixturePath}/example.png`]);
     expect(image instanceof Jimp).toBeTruthy();
   }, 10000);
 
-  test('should handle options', async () => {
+  test('handles options', async () => {
     const image = await mergeImg([
       `${fixturePath}/example.png`,
       `${fixturePath}/example.png`,
@@ -57,7 +57,7 @@ describe('`mergeImg()`', () => {
     expect(image instanceof Jimp).toBeTruthy();
   }, 10000);
 
-  test('should handle offsets per image individually`', async () => {
+  test('handles offsets per image individually`', async () => {
     const {bitmap: {width, height}} = await mergeImg([
       {
         src: `${fixturePath}/example.png`,
@@ -76,7 +76,7 @@ describe('`mergeImg()`', () => {
 });
 
 describe('`mergeImg()` margin option', () => {
-  test('should handle the image margin with number option', async () => {
+  test('handles the image margin with number option', async () => {
     const {bitmap: {width, height}} = await mergeImg([
       `${fixturePath}/example.png`,
       `${fixturePath}/example.png`,
@@ -88,7 +88,7 @@ describe('`mergeImg()` margin option', () => {
     expect(height).toBe(592);
   }, 10000);
 
-  test('should handle the image margin with string option', async () => {
+  test('handles the image margin with string option', async () => {
     const {bitmap: {width, height}} = await mergeImg([
       `${fixturePath}/example.png`,
       `${fixturePath}/example.png`,
@@ -100,7 +100,7 @@ describe('`mergeImg()` margin option', () => {
     expect(height).toBe(552);
   }, 10000);
 
-  test('should handle the image margin with object option', async () => {
+  test('handles the image margin with object option', async () => {
     const {bitmap: {width, height}} = await mergeImg([
       `${fixturePath}/example.png`,
       `${fixturePath}/example.png`,
