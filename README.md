@@ -5,9 +5,9 @@
 [![Build Status](https://travis-ci.org/preco21/merge-img.svg?branch=master)](https://travis-ci.org/preco21/merge-img)
 [![Dependency Status](https://dependencyci.com/github/preco21/merge-img/badge)](https://dependencyci.com/github/preco21/merge-img)
 
-> Merge multiple images into one single image in serial
+> Serially merge images into a single image
 
-`merge-img` simply merges passed images into one single image in serial. This may helpful for task which has to generate a preview of multiple images in single image. This moudle is based on [`Jimp`][jimp].
+This will be helpful in a situation when you have to generate a preview of multiple images into a single image. This module is based on [`Jimp`][jimp] for image processing.
 
 ![figure](https://rawgit.com/preco21/merge-img/master/media/figure.png)
 
@@ -36,7 +36,7 @@ mergeImg(['image-1.png', 'image-2.jpg'])
 
 ### mergeImg(images[, options])
 
-* `images` Array of (String | Object | Buffer | [Jimp][jimp]) - List of images to concat. If `String` is passed, it will be considered to file path. Also you can pass other [Jimp][jimp] object. An `Object` entry can have following options:
+* `images` Array of (String | Object | Buffer | [Jimp][jimp]) - List of images to concat. If `String` is passed, it will be considered to the file path. Also you can pass other [Jimp][jimp] object. An `Object` entry can have following options:
   * `src` _`String`_ or `Buffer` - A single image source to concat.
   * `offsetX` Number (optional) - `x` offset to affect this image. Default is `0`.
   * `offsetY` Number (optional) - `y` offset to affect this image. Default is `0`.

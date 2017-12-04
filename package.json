@@ -1,7 +1,7 @@
 {
   "name": "merge-img",
   "version": "2.1.1",
-  "description": "Merge multiple images into one single image",
+  "description": "Serially merge images into a single image",
   "author": "Plusb Preco <plusb21@gmail.com>",
   "main": "lib/index.js",
   "scripts": {
