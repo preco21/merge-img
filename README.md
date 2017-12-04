@@ -5,9 +5,9 @@
 [![Build Status](https://travis-ci.org/preco21/merge-img.svg?branch=master)](https://travis-ci.org/preco21/merge-img)
 [![Dependency Status](https://dependencyci.com/github/preco21/merge-img/badge)](https://dependencyci.com/github/preco21/merge-img)
 
-> Serially merge images into a single image
+> Merge multiple images into a single image
 
-This will be helpful in a situation when you have to generate a preview of multiple images into a single image. This module is based on [`Jimp`][jimp] for image processing.
+`merge-img` merges given images into a single image in right order. This will be helpful in a situation when you have to generate a preview of multiple images into a single image. This module is based on [`Jimp`][jimp] for image processing.
 
 ![figure](https://rawgit.com/preco21/merge-img/master/media/figure.png)
 
