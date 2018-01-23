@@ -10,6 +10,7 @@
 `merge-img` merges given images into a single image in right order. This will be helpful in a situation when you have to generate a preview of multiple images into a single image. This module is based on [`Jimp`][jimp] for image processing.
 
 ![figure](https://rawgit.com/preco21/merge-img/master/media/figure.png)
+Image credit: https://www.pexels.com/
 
 ## Install
 
