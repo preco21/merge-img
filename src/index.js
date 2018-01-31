@@ -1,14 +1,14 @@
 import isPlainObj from 'is-plain-obj';
-import Jimp, {read} from 'jimp';
 import alignImage from './utils/alignImage';
 import calcMargin from './utils/calcMargin';
+import {jimpComposer} from './composers';
 
 export default function mergeImg(images, {
   direction = false,
-  color = 0x00000000,
   align = 'start',
   offset = 0,
   margin,
+  composer = jimpComposer(),
 } = {}) {
   if (!Array.isArray(images)) {
     throw new TypeError('`images` must be an array that contains images');
@@ -18,31 +18,30 @@ export default function mergeImg(images, {
     throw new Error('At least `images` must contain more than one image');
   }
 
-  const processImg = (img) => {
-    if (isPlainObj(img)) {
-      const {src, offsetX, offsetY} = img;
-
-      return read(src)
-        .then((imgObj) => ({
-          img: imgObj,
+  const processImage = (input) => {
+    if (isPlainObj(input)) {
+      const {source, offsetX, offsetY} = input;
+      return composer.resolveImage({source})
+        .then((imageObj) => ({
+          ...imageObj,
           offsetX,
           offsetY,
         }));
     }
 
-    return read(img).then((imgObj) => ({img: imgObj}));
+    return composer.resolveImage({source: input});
   };
 
-  return Promise.all(images.map(processImg))
+  return Promise.all(images.map(processImage))
     .then((imgs) => {
       let totalX = 0;
       let totalY = 0;
 
-      const imgData = imgs.reduce((res, {img, offsetX = 0, offsetY = 0}) => {
-        const {bitmap: {width, height}} = img;
-
+      const imageData = imgs.reduce((res, {image, width, height, offsetX = 0, offsetY = 0}) => {
         res.push({
-          img,
+          image,
+          width,
+          height,
           x: totalX + offsetX,
           y: totalY + offsetY,
           offsetX,
@@ -55,32 +54,44 @@ export default function mergeImg(images, {
         return res;
       }, []);
 
+      // Calculate margins
       const {top, right, bottom, left} = calcMargin(margin);
       const marginTopBottom = top + bottom;
       const marginRightLeft = right + left;
 
       const totalWidth = direction
-        ? Math.max(...imgData.map(({img: {bitmap: {width}}, offsetX}) => width + offsetX))
-        : imgData.reduce((res, {img: {bitmap: {width}}, offsetX}, index) => res + width + offsetX + (Number(index > 0) * offset), 0);
+        ? Math.max(...imageData.map(({width, offsetX}) => width + offsetX))
+        : imageData.reduce((res, {width, offsetX}, index) => res + width + offsetX + (Number(index > 0) * offset), 0);
 
       const totalHeight = direction
-        ? imgData.reduce((res, {img: {bitmap: {height}}, offsetY}, index) => res + height + offsetY + (Number(index > 0) * offset), 0)
-        : Math.max(...imgData.map(({img: {bitmap: {height}}, offsetY}) => height + offsetY));
+        ? imageData.reduce((res, {height, offsetY}, index) => res + height + offsetY + (Number(index > 0) * offset), 0)
+        : Math.max(...imageData.map(({height, offsetY}) => height + offsetY));
 
-      const baseImage = new Jimp(totalWidth + marginRightLeft, totalHeight + marginTopBottom, color);
+      // Create canvas to draw images
+      const canvasImagePromise = composer.createCanvas({
+        width: totalWidth + marginRightLeft,
+        height: totalHeight + marginTopBottom,
+      });
 
-      // Fallback for `Array#entries()`
-      const imgDataEntries = imgData.map((data, index) => [index, data]);
+      // Draw images to the canvas
+      return canvasImagePromise.then(
+        (imageCanvas) =>
+          imageData.reduce(
+            (res, {image, width, height, x, y, offsetX, offsetY}, index) =>
+              res.then(() => {
+                const [px, py] = direction
+                  ? [alignImage(totalWidth, width, align) + offsetX, y + (index * offset)]
+                  : [x + (index * offset), alignImage(totalHeight, height, align) + offsetY];
 
-      for (const [index, {img, x, y, offsetX, offsetY}] of imgDataEntries) {
-        const {bitmap: {width, height}} = img;
-        const [px, py] = direction
-          ? [alignImage(totalWidth, width, align) + offsetX, y + (index * offset)]
-          : [x + (index * offset), alignImage(totalHeight, height, align) + offsetY];
-
-        baseImage.composite(img, px + left, py + top);
-      }
-
-      return baseImage;
+                return composer.drawImage({
+                  canvas: imageCanvas,
+                  image,
+                  x: px + left,
+                  y: py + top,
+                });
+              }),
+            Promise.resolve(),
+          ).then(() => imageCanvas),
+      );
     });
 }

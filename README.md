@@ -38,7 +38,7 @@ mergeImg(['image-1.png', 'image-2.jpg'])
 ### mergeImg(images[, options])
 
 * `images` Array of (String | Object | Buffer | [Jimp][jimp]) - List of images to concat. If `String` is passed, it will be considered to the file path. Also you can pass other [Jimp][jimp] object. An `Object` entry can have following options:
-  * `src` _`String`_ or `Buffer` - A single image source to concat.
+  * `source` _`String`_ or `Buffer` - A single image source to concat.
   * `offsetX` Number (optional) - `x` offset to affect this image. Default is `0`.
   * `offsetY` Number (optional) - `y` offset to affect this image. Default is `0`.
 * `options` Object (optional)
