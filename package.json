@@ -5,7 +5,7 @@
   "author": "Plusb Preco <plusb21@gmail.com>",
   "main": "lib/index.js",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublish": "npm run test && npm run build",
     "prebuild": "npm run clean",
     "test": "eslint . && jest",
     "build": "babel --out-dir lib src",
