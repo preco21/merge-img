@@ -86,8 +86,13 @@ export default function mergeImg(images, {
                 return composer.drawImage({
                   canvas: imageCanvas,
                   image,
+                  width,
+                  height,
                   x: px + left,
                   y: py + top,
+                  offsetX,
+                  offsetY,
+                  index,
                 });
               }),
             Promise.resolve(),
