@@ -1470,14 +1470,14 @@ escodegen@^1.6.1:
   optionalDependencies:
     source-map "~0.2.0"
 
-eslint-config-prev@^7.0.0-beta.0:
-  version "7.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prev/-/eslint-config-prev-7.0.0-beta.0.tgz#5357acd4b1f928ad29e63e086a0a26e00d181014"
+eslint-config-prev@^7.0.0-beta.2:
+  version "7.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-prev/-/eslint-config-prev-7.0.0-beta.2.tgz#9a523436f261aab06b0af40c13ff80679fd80295"
   dependencies:
     babel-eslint "^8.2.1"
     eslint-plugin-babel "^4.1.2"
     eslint-plugin-import "^2.8.0"
-    eslint-plugin-react "^7.6.0"
+    eslint-plugin-react "^7.6.1"
 
 eslint-import-resolver-node@^0.3.1:
   version "0.3.1"
@@ -1512,7 +1512,7 @@ eslint-plugin-import@^2.8.0:
     minimatch "^3.0.3"
     read-pkg-up "^2.0.0"
 
-eslint-plugin-react@^7.6.0:
+eslint-plugin-react@^7.6.1:
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.6.1.tgz#5d0e908be599f0c02fbf4eef0c7ed6f29dff7633"
   dependencies:
@@ -1532,9 +1532,9 @@ eslint-visitor-keys@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#3f3180fb2e291017716acb4c9d6d5b5c34a6a81d"
 
-eslint@^4.16.0:
-  version "4.16.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.16.0.tgz#934ada9e98715e1d7bbfd6f6f0519ed2fab35cc1"
+eslint@^4.17.0:
+  version "4.17.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.17.0.tgz#dc24bb51ede48df629be7031c71d9dc0ee4f3ddf"
   dependencies:
     ajv "^5.3.0"
     babel-code-frame "^6.22.0"
