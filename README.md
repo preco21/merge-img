@@ -29,7 +29,7 @@ mergeImg(['image-1.png', 'image-2.jpg'])
     img.write('out.png', () => console.log('done'));
 
     // Get image as `Buffer`
-    img.getBuffer(img.getMIME(), (buf) => console.log(buf));
+    img.getBuffer(img.getMIME(), (err, buf) => console.log(buf));
   });
 ```
 
