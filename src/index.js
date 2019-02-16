@@ -19,6 +19,9 @@ export default function mergeImg(images, {
   }
 
   const processImg = (img) => {
+    if(img instanceof Jimp) {
+      return {img};
+    }
     if (isPlainObj(img)) {
       const {src, offsetX, offsetY} = img;
 
