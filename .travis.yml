@@ -1,8 +1,9 @@
 sudo: false
 language: node_js
 node_js:
-  - 9
-  - 8
+  - 12
+  - 10
+script: yarn run validate
 cache:
   yarn: true
   directories:
